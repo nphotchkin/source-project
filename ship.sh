@@ -103,7 +103,7 @@ EOF
 )
 
 # Create a pull request using the GitHub CLI (gh)
-gh pr create --base "$TARGET_BRANCH" --head "$NEXT_VERSION" --title "🎉 Release $NEXT_VERSION 🚀" --body "$PR_BODY"
+gh pr create --base "$TARGET_BRANCH" --head "feature/client-$NEXT_VERSION" --title "🎉 Release $NEXT_VERSION 🚀" --body "$PR_BODY"
 
 # Clean up by going back to the previous directory and removing the cloned repo
 cd ..
