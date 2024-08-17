@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# <-- PROMPT FOR INPUT -->
-
 # Define color codes
 COLOR_RESET="\033[0m"
 COLOR_RED="\033[0;31m"
@@ -10,6 +8,18 @@ COLOR_YELLOW="\033[0;33m"
 COLOR_BLUE="\033[0;34m"
 COLOR_MAGENTA="\033[0;35m"
 COLOR_CYAN="\033[0;36m"
+
+# Check if version number is passed as an argument
+if [ -z "$1" ]; then
+  echo -e "${COLOR_RED} Error: No version number supplied. ${COLOR_RESET}"
+  echo -e "${COLOR_GREEN} Usage: ./ship.sh <version_number> ${COLOR_RESET}"
+  exit 1
+fi
+
+
+# <-- PROMPT FOR INPUT -->
+
+
 
 # Print the ASCII boat in rainbow colors
 echo -e "${COLOR_RED}  _________.__    .__        ${COLOR_RESET}"
@@ -27,13 +37,6 @@ read -p "$(echo -e "${COLOR_CYAN}Enter a summary of the changes make? ${COLOR_RE
 echo -e "${COLOR_GREEN}The following changes have been made: \n\n ${SUMMARY}!${COLOR_RESET}"
 
 # <-- PROMPT FOR INPUT -->
-
-# Check if version number is passed as an argument
-if [ -z "$1" ]; then
-  echo "Error: No version number supplied."
-  echo "Usage: ./create_pr.sh <version_number>"
-  exit 1
-fi
 
 # Set variables
 VERSION=$1
