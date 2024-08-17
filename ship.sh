@@ -26,6 +26,8 @@ COMMIT_SUMMARY=$(git log --oneline --no-merges --cherry-pick origin/main..$CURRE
 
 
 
+
+#### PUSH TO TARGET
 # Clone the target repository
 git clone "$TARGET_REPO"
 cd target-project || { echo "Failed to navigate to repository"; exit 1; }
@@ -41,7 +43,7 @@ cp -r ../build/* ./target/
 
 # Stage and commit the changes
 git add ./target
-git commit -m "Add files for version $VERSION"
+git commit -m "🤖 Add files for version $VERSION"
 
 # Push the new branch to the remote repository
 git push origin "$VERSION"
@@ -58,7 +60,7 @@ EOF
 )
 
 # Create a pull request using the GitHub CLI (gh)
-gh pr create --base "$TARGET_BRANCH" --head "$VERSION" --title "Release $VERSION" --body "$PR_BODY"
+gh pr create --base "$TARGET_BRANCH" --head "$VERSION" --title "🎉 Release $VERSION 🚀" --body "$PR_BODY"
 
 # Clean up by going back to the previous directory and removing the cloned repo
 cd ..
