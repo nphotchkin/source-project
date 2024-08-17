@@ -16,3 +16,8 @@ sed -i '' "s|version: $current_version|version: $new_version|" "$file"
 
 # Output the changes for verification
 echo "Updated version from $current_version to $new_version in $file"
+
+git add --all
+git tag -a "$new_version" -m "Release version $new_version"
+git commit -m "🔖 Bump version to $new_version"
+git push
