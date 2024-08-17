@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Path to the file
 file="./openapi.yaml"
 
@@ -9,8 +11,8 @@ IFS='.' read -r major minor patch <<< "$current_version"
 new_patch=$((patch + 1))
 new_version="$major.$minor.$new_patch"
 
-# Update the version in the file
-sed -i "s/version: $current_version/version: $new_version/" "$file"
+# Update the version in the file (macOS syntax)
+sed -i '' "s|version: $current_version|version: $new_version|" "$file"
 
-# Output the new version
-echo "Updated version to $new_version"
+# Output the changes for verification
+echo "Updated version from $current_version to $new_version in $file"
