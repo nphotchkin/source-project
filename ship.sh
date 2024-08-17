@@ -12,8 +12,17 @@ VERSION=$1
 TARGET_REPO="git@github.com:nphotchkin/target-project.git"  # Replace with your target repository
 TARGET_BRANCH="main"  # Replace with the default branch name of your target repository
 
-# Get the summary of commits from the current repository (source)
-COMMIT_SUMMARY=$(git log --oneline -n 5)  # Adjust the -n value to include more or fewer commits
+
+# Get the current branch name
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Get the summary of the latest 5 commits pushed to the current branch
+# You can adjust the -n value to include more or fewer commits
+COMMIT_SUMMARY=$(git log origin/$CURRENT_BRANCH --oneline -n 5)
+
+# Print the commit summary
+echo "Summary of the last 5 commits pushed to $CURRENT_BRANCH:"
+echo "$COMMIT_SUMMARY"
 
 # Clone the target repository
 git clone "$TARGET_REPO"
