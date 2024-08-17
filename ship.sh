@@ -16,13 +16,15 @@ TARGET_BRANCH="main"  # Replace with the default branch name of your target repo
 # Get the current branch name
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-# Get the summary of the latest 5 commits pushed to the current branch
-# You can adjust the -n value to include more or fewer commits
-COMMIT_SUMMARY=$(git log origin/$CURRENT_BRANCH --oneline -n 5)
+# Ensure the latest data from the remote repository
+git fetch origin
 
-# Print the commit summary
-echo "Summary of the last 5 commits pushed to $CURRENT_BRANCH:"
-echo "$COMMIT_SUMMARY"
+# Get the commit summary of commits on the current branch that are not in other branches
+# This includes commits that are unique to your current branch
+COMMIT_SUMMARY=$(git log --oneline --no-merges --cherry-pick origin/main..$CURRENT_BRANCH)
+
+
+
 
 # Clone the target repository
 git clone "$TARGET_REPO"
