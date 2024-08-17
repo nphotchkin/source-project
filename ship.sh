@@ -33,23 +33,11 @@ echo -e "${COLOR_GREEN}The following changes have been made: \n\n ${SUMMARY}!${C
 
 # <-- PROMPT FOR INPUT -->
 
-# <-- UPDATE THIS REPO VERSION -->
-
 # Get the latest tag
-latest_tag=$(git describe --tags --abbrev=0)
-# Extract the version number and increment it
-NEXT_VERSION=$(echo $latest_tag | awk -F. -v OFS=. '{$NF++;print}')
+file="./openapi.yaml"
 
-# Update the version in a file
-sed -i "s/version=\"$latest_tag\"/version=\"$NEXT_VERSION\"/" ./version.txt
-
-# Commit the changes
-git add --all
-git tag -a "$NEXT_VERSION" -m "Release version $NEXT_VERSION"
-git commit -m "🔖 Bump version to $NEXT_VERSION"
-git push
-# <-- UPDATE THIS REPO VERSION -->
-
+# Read the current version from the file
+NEXT_VERSION=$(grep 'version:' "$file" | awk '{print $2}')
 
 # Set variables
 TARGET_REPO="git@github.com:nphotchkin/target-project.git"  # Replace with your target repository
