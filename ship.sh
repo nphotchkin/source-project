@@ -9,10 +9,6 @@ COLOR_BLUE="\033[0;34m"
 COLOR_MAGENTA="\033[0;35m"
 COLOR_CYAN="\033[0;36m"
 
-# Check if version number is passed as an argument
-
-
-
 
 # <-- PROMPT FOR INPUT -->
 
@@ -49,7 +45,6 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # Ensure the latest data from the remote repository
 git fetch origin
-
 # Get the commit summary of commits on the current branch that are not in other branches
 # This includes commits that are unique to your current branch
 COMMIT_SUMMARY=$(git log --oneline --no-merges --cherry-pick origin/main..$CURRENT_BRANCH)
